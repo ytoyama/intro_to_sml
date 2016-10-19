@@ -78,8 +78,8 @@
       \end{aligned}
     \end{gather*}
 
-    The experimental result on a validation dataset showed that there is a huge
-    gap of loss, $\sigma^2$, and log-likelihood between a linear model and, a quadratic
+    The experimental result on a validation dataset showed that there are huge
+    gaps of loss, $\sigma^2$, and log-likelihood between a linear model and, a quadratic
     and cubic models.
     The lienar model showed much greater values in terms of loss and $\sigma^2$.
     The others achieved much better log-likelihood values.
@@ -88,15 +88,14 @@
     as model A.
     The reasons are listed below.
     \begin{itemize}
-      \item Computional efficiency for traning and prediction \\
+      \item Computional efficiency for training and prediction \\
             There are fewer times of multiplication compared with a cubic one.
       \item Low complexity \\
             It has one fewer parameters compared with a cubic one.
       \item Acceptably low loss value \\
             While a linear model is more efficient and simpler than a quadratic one,
-            it shows too much loss on both traning and validation dataset.
+            it showed too large loss on both training and validation datasets.
             That means a linear one is not expressive enough for the data.
-
     \end{itemize}
 
   \item
@@ -125,7 +124,7 @@
       \end{aligned}
     \end{gather*}
 
-    Here, I also choose a quadratic model as model B with the exactly same reasons.
+    Here, I also choose a quadratic model as model B with the exactly same reasons as model A.
 
     While I cannot compare model A and B because I chose the same quadratic one,
     I think it is not reasonable to compare them because they are evaluated
