@@ -16,6 +16,8 @@
 
 \let\oldtext\text
 \renewcommand\text[1]{\oldtext{ #1 }}
+\newcommand\mif{\text{if}}
+\newcommand\otherwise{\text{otherwise}}
 \newcommand\refeq[1]{Eq. \ref{#1}}
 \DeclareMathOperator*\argmin{argmin}
 \DeclareMathOperator*\argmax{argmax}
