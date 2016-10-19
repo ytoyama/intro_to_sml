@@ -12,7 +12,7 @@
 
 % commands
 
-\newcommand\nth[1]{\title{Mathematical Toolkit Assignment #1}}
+\newcommand\nth[1]{\title{Introduction to Statistical Machine Learning \\ Homework #1}}
 
 \let\oldtext\text
 \renewcommand\text[1]{\oldtext{ #1 }}
