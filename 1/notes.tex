@@ -29,6 +29,29 @@
     \therefore the correration between data and prediction errors is 0.
 
   \item
+    \begin{gather*}
+      \begin{aligned}
+        \hat{\vec{w}}
+        & = \argmin_\vec{w} \sum_{i=1}^N (y_i - \vec{w}^T \vec{x}_i)^2 \\
+        & = (X^T X)^{-1} X^T y
+      \end{aligned} \\
+      \text{Let} C \in \field{R}^{d+1 \times d+1} \st \tilde{X} = XC \\
+      \begin{aligned}
+        \hat{\tilde{\vec{w}}}
+        & = \argmin_\vec{w} \sum_{i=1}^N (y_i - \vec{w}^T \tilde{\vec{x}}_i)^2 \\
+        & = (\tilde{X}^T \tilde{X})^{-1} \tilde{X}^T y \\
+        & = ((XC)^T XC)^{-1} (XC)^T y \\
+        & = (CX^T XC)^{-1} CX^T y \\
+        & = C^{-1} (X^T X)^{-1} C^{-1} CX^T y \\
+        & = C^{-1} (X^T X)^{-1} X^T y
+      \end{aligned} \\
+      \begin{aligned}
+        \tilde{X}\hat{\tilde{\vec{w}}}
+        & = XCC^{-1} (X^T X)^{-1} X^T y \\
+        & = X (X^T X)^{-1} X^T y \\
+        & = X \hat{\vec{w}}
+      \end{aligned}
+    \end{gather*}
 \end{p}
 
 \end{document}

@@ -17,6 +17,8 @@
 \let\oldtext\text
 \renewcommand\text[1]{\oldtext{ #1 }}
 \newcommand\refeq[1]{Eq. \ref{#1}}
+\DeclareMathOperator*\argmin{argmin}
+\DeclareMathOperator*\argmax{argmax}
 
 \newcommand\field[1]{\mathbb{#1}}
 \renewcommand\vec[1]{\mathbf{#1}}
