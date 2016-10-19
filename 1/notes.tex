@@ -23,7 +23,7 @@
       \Ep{y - \vec{w}^T \vec{x}} & = 0 \\
       \Ep{(y - \vec{w}^T \vec{x}) E_{p(\vec{x})} \left[ \vec{x} \right]} & = 0 \\
       \Ep{(y - \vec{w}^T \vec{x}) \vec{x}}
-        + \Ep{(y - \vec{w}^T \vec{x}) E_{p(\vec{x})} \left[ \vec{x} \right]} & = 0 \\
+          + \Ep{(y - \vec{w}^T \vec{x}) E_{p(\vec{x})} \left[ \vec{x} \right]} & = 0 \\
       \Ep{(y - \vec{w}^T \vec{x}) (\vec{x} - E_{p(\vec{x})} \left[ \vec{x} \right])} & = 0
     \end{align*}
     \therefore the correration between data and prediction errors is 0.
@@ -35,7 +35,8 @@
         & = \argmin_\vec{w} \sum_{i=1}^N (y_i - \vec{w}^T \vec{x}_i)^2 \\
         & = (X^T X)^{-1} X^T y
       \end{aligned} \\
-      \text{Let} C \in \field{R}^{d+1 \times d+1} \st \tilde{X} = XC \\
+      \text{Let} C \in \field{R}^{(d+1) \times (d+1)} \text{be a diagonal matrix}
+          \st \tilde{X} = XC \\
       \begin{aligned}
         \hat{\tilde{\vec{w}}}
         & = \argmin_\vec{w} \sum_{i=1}^N (y_i - \vec{w}^T \tilde{\vec{x}}_i)^2 \\
@@ -49,9 +50,11 @@
         \tilde{X}\hat{\tilde{\vec{w}}}
         & = XCC^{-1} (X^T X)^{-1} X^T y \\
         & = X (X^T X)^{-1} X^T y \\
-        & = X \hat{\vec{w}}
+        & = X \hat{\vec{w}} \text{as required}
       \end{aligned}
     \end{gather*}
+
+  \item
 \end{p}
 
 \end{document}
