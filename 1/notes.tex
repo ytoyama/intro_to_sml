@@ -55,6 +55,27 @@
     \end{gather*}
 
   \item
+    \begin{gather*}
+      \begin{aligned}
+        \hat{\sigma^2}
+        & = \argmax_{\sigma^2} \sum_{i=1}^N \log p(y_i|\vec{x}_i; \vec{w}, \sigma) \\
+        & = \argmax_{\sigma^2} - \frac{1}{2 \sigma^2}
+            \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 - N \log \sigma \sqrt{2 \pi} \\
+        & = \argmin_{\sigma^2} \frac{1}{\sigma^2}
+            \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 + N \log 2 \pi \sigma^2 \\
+        & = \argmin_{\sigma^2} \frac{1}{\sigma^2}
+            \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 + N \log \sigma^2
+      \end{aligned} \\
+      \begin{aligned}
+      \frac{\partial}{\partial \sigma^2} \frac{1}{\sigma^2}
+          \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 + N \log \sigma^2 & = 0 \\
+      - \frac{1}{\sigma^4}
+          \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 + \frac{N}{\sigma^2} & = 0 \\
+      \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 - N \sigma^2 & = 0 \\
+      \sigma^2 = \frac{1}{N} \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 \\
+      \hat{\sigma^2} = \frac{1}{N} \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2
+      \end{aligned}
+    \end{gather*}
 \end{p}
 
 \end{document}
