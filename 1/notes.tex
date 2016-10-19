@@ -2,6 +2,7 @@
 \nth{1}
 
 \newcommand\Ep[1]{E_{p(\vec{x}, y)} \left[ #1 \right]}
+\newcommand\fancyb{i\beta_{y^, y}}
 
 \begin{document}
 
@@ -79,7 +80,7 @@
 
   \item
     \begin{gather*}
-      \text{Let} \beta(\hat{y}, y) = \begin{cases}
+      \text{Let} \fancyb = \begin{cases}
         1 & \mif \hat{y} \le y \\
         \alpha & \otherwise
       \end{cases} \\
@@ -89,15 +90,15 @@
           (\hat{y} - y)^2 & \mif \hat{y} \le y \\
           \alpha (\hat{y} - y)^2 & \otherwise
         \end{cases} \\
-        & = \beta (\hat{y} - y)^2
+        & = \fancyb (\hat{y} - y)^2
       \end{aligned} \\
       \begin{aligned}
         \frac{\partial}{\partial \vec{w}} L_\alpha
         & = \frac{\partial}{\partial \vec{w}}
-            \frac{1}{N} \sum_{i=1}^N \beta (\hat{y}_i - y_i)^2 \\
+            \frac{1}{N} \sum_{i=1}^N \fancyb (\hat{y}_i - y_i)^2 \\
         & = \frac{\partial}{\partial \vec{w}}
-            \frac{1}{N} \sum_{i=1}^N \beta (\vec{w}^T \vec{x}_i - y_i)^2 \\
-        & = \frac{1}{N} \sum_{i=1}^N 2 \beta (\vec{w}^T \vec{x}_i - y_i) \vec{x}_i \\
+            \frac{1}{N} \sum_{i=1}^N \fancyb (\vec{w}^T \vec{x}_i - y_i)^2 \\
+        & = \frac{1}{N} \sum_{i=1}^N 2 \fancyb (\vec{w}^T \vec{x}_i - y_i) \vec{x}_i \\
       \end{aligned}
     \end{gather*}
 \end{p}
