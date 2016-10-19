@@ -1,221 +1,28 @@
 \documentclass{introtosml}
 \nth{1}
 
+\newcommand\Ep[1]{E_{p(\vec{x}, y)} \left[ #1 \right]}
+
 \begin{document}
 
 \maketitle
 
 \begin{p}
   \item
-    \begin{subp}
-      \item
-        \begin{gather*}
-          \mdim{A} = \rank{A} + \mnull{A} \\
-          n = m + \mnull{A} \\
-          \mnull{A} = n - m
-        \end{gather*}
-      \item
-        \begin{gather*}
-          \mnull{A} = \mdim{\ker{A}}
-        \end{gather*}
-        Then, $\ker{A}$ can have a basis $B$.
-        \begin{gather*}
-          \text{i.e.} \forall \vec{v} \in \ker{A},
-          \exists a_1, ..., a_{n-m} \in \field{F}_2,
-          \vec{v} = a_1 \vec{b}_1 + \dots + a_{n-m} \vec{b}_{n-m}\ (\vec{b}_i \in B)
-        \end{gather*}
-        \therefore The answer is $2^{n-m}$.
-      \item
-        \begin{gather*}
-          \forall \vec{x} \st A \vec{x} = \vec{b},
-          A (\vec{x} - \vec{x}_0) = 0 \because A \vec{x}_0 = \vec{b} \\
-          \therefore \vec{x} - \vec{x}_0 \in \ker{A}
-        \end{gather*}
-        Then, choosing each element of $\vec{x}$ carefully (1 or 0),
-        $\vec{x} - \vec{x}_0$ can be any element of $\field{F}^n_2$.
-        \begin{gather*}
-          \therefore \left\{ \vec{x} - \vec{x}_0 | A \vec{x} = \vec{b} \right\} = \ker{A}
-        \end{gather*}
-        \therefore $\vec{x} - \vec{x}_0$ has $2^{n-m}$ solutions. \\
-        \therefore $\vec{x}$ has $2^{n-m}$ solutions. \\
-    \end{subp}
-
-  \item
-    \begin{subp}
-      \item
-        \begin{align*}
-          \forall \vec{v},
-          f(c \vec{v} + (-c) \vec{v}) & \ge \min \left\{ f(\vec{v}), f(\vec{v}) \right\} \\
-          f(\vec{0}_V) & \ge f(\vec{v})
-        \end{align*}
-      \item
-        Because every element $\vec{v}_t \in V_t$ is in V by definition.
-        \begin{gather*}
-          V_t \subseteq V
-        \end{gather*}
-    \end{subp}
+    \begin{gather*}
+      \begin{aligned}
+        \frac{\partial}{\partial \vec{w}} R(\vec{w}) & = 0 \\
+        \frac{\partial}{\partial \vec{w}} \Ep{(y - {\vec{w}}^T \vec{x})^2 } & = 0 \\
+        \Ep{2 (y - {\vec{w}}^T \vec{x}) (-\vec{x})} & = 0 \\
+        \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \\
+        \vec{a}^T \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \\
+        \Ep{(y - {\vec{w}}^T \vec{x}) \vec{a}^T \vec{x}} & = 0
+      \end{aligned}
+    \end{gather*}
 
   \item
     \begin{gather*}
-      \begin{aligned}
-        p(x) & = x^2 + bx +c \\
-             & = (x - r_1) (x - r_2) \\
-             & = x^2 - (r_1 + r_2) x + r_1 r_2
-      \end{aligned} \\
-      \therefore b = - r_1 - r_2, c = r_1 r_2
     \end{gather*}
-    I'm lost.
-
-  \item
-    \begin{gather*}
-      \begin{aligned}
-        \mu(P, Q) & = \deg{PQ} \\
-                  & = \deg{QP} \\
-                  & = \mu(Q, P)
-      \end{aligned} \\
-      \begin{aligned}
-        \mu(0, 0) & = \deg{0} \\
-                  & = 0
-      \end{aligned} \\
-      \begin{aligned}
-        \forall P \ne 0, \mu(P, P) & = \deg{P^2} \\
-                                   & = 2 \deg{P} \\
-                                   & > 0
-      \end{aligned} \\
-      \begin{aligned}
-        \mu(P + Q, R) & = \deg{(P + Q} R) \\
-                      & = \max \left\{ \deg{P}, \deg{Q} \right\} + \deg{R}
-      \end{aligned} \\
-      \begin{aligned}
-        \mu(P, R) + \mu(Q, R) & = \max \left\{ \deg{P} + \deg{R}, \deg{Q} + \deg{R} \right\} \\
-                              & = \max \left\{ \deg{P}, \deg{Q} \right\} + \deg{R}
-      \end{aligned} \\
-      \therefore \mu(P + Q, R) = \mu(P, R) + \mu(P, Q) \\
-      \begin{aligned}
-        c \in \field{R}, \mu(cP, R) & = \deg{cPR} \\
-                                    & = \deg{PR} \\
-                                    & \ne c \cdot \deg{P, R}
-      \end{aligned} \\
-    \end{gather*}
-    \therefore $\mu(\cdot, R)$ is not a LT. \\
-    \therefore $\mu$ is not a IP.
-
-  \item
-    \begin{gather*}
-      \alpha \beta \vec{x} = \lambda \vec{x} \\
-      \beta \alpha \beta \vec{x} = \beta (\lambda \vec{x}) \\
-      \beta \alpha (\beta \vec{x}) = \lambda (\beta \vec{x}) \\
-    \end{gather*}
-    \therefore $\lambda$ is an eigenvalue of $\beta \alpha$.
-
-  \item
-    \begin{subp}
-      \item
-        \begin{gather*}
-          \varphi(\vec{v}) = \lambda \vec{v} \\
-          \varphi(\vec{v}) = \lambda \varphi(\vec{v}) \\
-          (\lambda - 1) \varphi(\vec{v}) = 0 \\
-          \lambda = 1_\field{F} \vee \varphi(\vec{v}) = 0 \\
-          \lambda = 1_\field{F} \vee \varphi(\vec{v}) = 0_\field{F} \vec{v} \\
-          \therefore \lambda \in \left\{ 0_\field{F}, 1_\field{F} \right\}
-        \end{gather*}
-
-      \item
-        Let $\forall \vec{v}, \varphi(\vec{v}) = \vec{v}_0$ ($\vec{v}_0$ is fixed.)
-        and assume $\varphi = \varphi^*$. \\
-        \begin{gather*}
-          \forall \vec{v}, \vec{w} \in V \st \vec{v} \ne \vec{w}, \\
-          \begin{aligned}
-            \ip{\varphi(\vec{v})}{\vec{w}} & = \ip{\vec{v}}{\varphi^*(\vec{w})} \\
-            \ip{\vec{v}_0}{\vec{w}} & = \ip{\vec{v}}{\vec{v}_0} \\
-            \ip{\vec{w}}{\vec{v}_0} & = \ip{\vec{v}}{\vec{v}_0} \\
-            \vec{v} & = \vec{w} \contradiction
-          \end{aligned}
-        \end{gather*}
-        \therefore not always $\varphi = \varphi^*$
-    \end{subp}
-
-  \item
-    \begin{subp}
-      \item
-        \begin{gather*}
-          \ip{\varphi(\vec{v})}{\vec{w}} = \ip{\vec{v}}{\varphi^*(\vec{w})} \\
-          \ip{\varphi^*(\vec{w})}{\vec{v}} = \ip{\vec{w}}{\varphi(\vec{v})} \\
-          \therefore (\varphi^*)^* = \varphi
-        \end{gather*}
-
-      \item
-        \begin{gather*}
-          \begin{aligned}
-            \forall \vec{v} \in \ker{\varphi},
-            \varphi(\vec{v}) & = 0 \\
-            \ip{\varphi(\vec{v})}{\vec{w}} & = 0 \\
-            \ip{\vec{v}}{\varphi^*(\vec{w})} & = 0 \\
-            \vec{v} & \in (\im{\varphi^*})^\perp
-          \end{aligned} \\
-          \begin{aligned}
-            \forall \vec{v} \in (\im{\varphi^*})^\perp, \forall \vec{w} \in W,
-            \ip{\vec{v}}{\varphi^*(\vec{w})} & = 0 \\
-            \ip{\varphi(\vec{v})}{\vec{w}} & = 0 \\
-            \varphi(\vec{v}) & = 0 \\
-            \vec{v} & \in \ker{\varphi}
-          \end{aligned} \\
-          \therefore \ker{\varphi} = (\im{\varphi^*})^\perp
-        \end{gather*}
-
-      \item
-        \begin{gather*}
-          \begin{aligned}
-            \forall \vec{w} \in \im{\varphi},
-            \exists \vec{v} \in V \st \vec{w} = \varphi(\vec{v}),
-            \forall \vec{w}' \in \ker{\varphi^*},
-            \ip{\vec{w}}{\vec{w}'}
-            & = \ip{\varphi(\vec{v})}{\vec{w}'} \\
-            & = \ip{\vec{v}}{\varphi^*(\vec{w}')} \\
-            & = 0 \\
-            \vec{w} & \in (\ker{\varphi^*})^\perp
-          \end{aligned} \\
-          \begin{aligned}
-            % \forall \vec{w} \in (\ker{\varphi^*})^\perp,
-            \forall \vec{v} \in V,
-            \forall \vec{w} \in \ker{\varphi^*},
-            \varphi^*(\vec{w}) & = 0 \\
-            \ip{\vec{v}}{\varphi^*(\vec{w})} & = 0 \\
-          \end{aligned} \\
-          \therefore \im{\varphi} = (\ker{\varphi^*})^\perp
-        \end{gather*}
-
-      \item
-        \begin{align*}
-          \rank{\varphi}
-          & = \mdim{\im{\varphi}} \\
-          & = \mdim{(\ker{\varphi^*}}^\perp) \\
-          & = \mdim{W} - \mdim{\ker{\varphi^*}} \\
-          & = \mdim{im(\varphi^*}) \\
-          & = \rank{\varphi^*}
-        \end{align*}
-
-      \item
-        \begin{gather*}
-          \text{Let}\ A = BC, B \in \field{C}^{m \times r}, C \in \field{C}^{r \times n} \\
-          \begin{aligned}
-            \text{then}\
-            & A_{i, :} = \sum_{j=1}^r B_{i, j} C_{i, :} \\
-            & A_{:, i} = \sum_{j=1}^r C_{j, i} B_{:, i}
-          \end{aligned} \\
-          \therefore \begin{cases}
-            rank_{row}(A) \le rank_{row}(C) \le r \\
-            rank_{column}(A) \le rank_{column}(B) \le r
-          \end{cases}
-        \end{gather*}
-        Choose a minimal $r$. \\
-        Then rows of $C$ form a minimal spanning set of rows of $A$. \\
-        And, columns of $C$ form a minimal spanning set of columns of $A$. \\
-        \therefore $r$ is the rank of both row and column spaces of $A$. \\
-        \begin{gather*}
-          \therefore rank_{row}(A) = rank_{column}(A)
-        \end{gather*}
-    \end{subp}
 \end{p}
 
 \end{document}
