@@ -1,3 +1,5 @@
 *.log
 *.toc
 *.aux
+__pycache__
+.ipynb*
