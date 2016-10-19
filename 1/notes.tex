@@ -9,20 +9,29 @@
 
 \begin{p}
   \item
-    \begin{gather*}
-      \begin{aligned}
-        \frac{\partial}{\partial \vec{w}} R(\vec{w}) & = 0 \\
-        \frac{\partial}{\partial \vec{w}} \Ep{(y - {\vec{w}}^T \vec{x})^2 } & = 0 \\
-        \Ep{2 (y - {\vec{w}}^T \vec{x}) (-\vec{x})} & = 0 \\
-        \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \\
-        \vec{a}^T \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \\
-        \Ep{(y - {\vec{w}}^T \vec{x}) \vec{a}^T \vec{x}} & = 0
-      \end{aligned}
-    \end{gather*}
+    \begin{align*}
+      \frac{\partial}{\partial \vec{w}} R(\vec{w}) & = 0 \\
+      \frac{\partial}{\partial \vec{w}} \Ep{(y - {\vec{w}}^T \vec{x})^2 } & = 0 \\
+      \Ep{2 (y - {\vec{w}}^T \vec{x}) (-\vec{x})} & = 0 \\
+      \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \label{eq:corr0} \\
+      \vec{a}^T \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \\
+      \Ep{(y - {\vec{w}}^T \vec{x}) \vec{a}^T \vec{x}} & = 0
+    \end{align*}
 
   \item
+    At the 0th element of \refeq{eq:corr0}, $\Ep{y - \vec{w}^T \vec{x}} = 0$ \\
     \begin{gather*}
+      \begin{aligned}
+        \therefore \Ep{(y - \vec{w}^T \vec{x}) E_{p(\vec{x})} \left[ \vec{x} \right]} & = 0 \\
+        \Ep{(y - \vec{w}^T \vec{x}) \vec{x}}
+          + \Ep{(y - \vec{w}^T \vec{x}) E_{p(\vec{x})} \left[ \vec{x} \right]} & = 0 \\
+        \Ep{(y - \vec{w}^T \vec{x}) (\vec{x} - E_{p(\vec{x})} \left[ \vec{x} \right])} & = 0 \\
+        \Ep{(y - \vec{w}^T \vec{x}) (\vec{x} - E_{p(\vec{x})} \left[ \vec{x} \right])} & = 0
+      \end{aligned}
     \end{gather*}
+    \therefore the correration between data and the prediction error is 0.
+
+  \item
 \end{p}
 
 \end{document}
