@@ -85,7 +85,7 @@
         \alpha & \otherwise
       \end{cases} \\
       \begin{aligned}
-        l_\alpha (\hat{y}, y)
+        l_\alpha(\hat{y}, y)
         & = \begin{cases}
           (\hat{y} - y)^2 & \mif \hat{y} \le y \\
           \alpha (\hat{y} - y)^2 & \otherwise
@@ -94,6 +94,7 @@
       \end{aligned} \\
       \begin{aligned}
         \frac{\partial}{\partial \vec{w}} L_\alpha
+        & = \frac{\partial}{\partial \vec{w}} \sum_{i=1}^N l_\alpha(\hat{y}, y) \\
         & = \frac{\partial}{\partial \vec{w}}
             \frac{1}{N} \sum_{i=1}^N \fancyb (\hat{y}_i - y_i)^2 \\
         & = \frac{\partial}{\partial \vec{w}}
