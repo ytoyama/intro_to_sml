@@ -120,7 +120,7 @@
             \frac{1}{N} \sum_{i=1}^N \fancyb (\hat{y}_i - y_i)^2 \\
         & = \frac{\partial}{\partial \vec{w}}
             \frac{1}{N} \sum_{i=1}^N \fancyb (\vec{w}^T \phi_i(\vec{x}) - y_i)^2 \\
-            & = \frac{1}{N} \sum_{i=1}^N 2 \fancyb (\vec{w}^T \phi_i(\vec{x}) - y_i) \vec{x}_i \\
+            & = \frac{1}{N} \sum_{i=1}^N 2 \fancyb (\vec{w}^T \phi_i(\vec{x}) - y_i) \phi_i(\vec{x}) \\
       \end{aligned}
     \end{gather*}
 
