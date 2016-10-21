@@ -15,19 +15,19 @@
       \frac{\partial}{\partial \vec{w}} \Ep{(y - {\vec{w}}^T \vec{x})^2 } & = 0 \\
       \Ep{2 (y - {\vec{w}}^T \vec{x}) (-\vec{x})} & = 0 \\
       \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \label{eq:corr0} \\
-      \vec{a}^T \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \\
-      \Ep{(y - {\vec{w}}^T \vec{x}) \vec{a}^T \vec{x}} & = 0
+      A \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \\
+      \Ep{(y - {\vec{w}}^T \vec{x}) A \vec{x}} & = 0
     \end{align*}
 
   \item
     \begin{align*}
       \Ep{y - \vec{w}^T \vec{x}} & = 0 \\
-      \Ep{(y - \vec{w}^T \vec{x}) E_{p(\vec{x})} \left[ \vec{x} \right]} & = 0 \\
-      \Ep{(y - \vec{w}^T \vec{x}) \vec{x}}
-          - \Ep{(y - \vec{w}^T \vec{x}) E_{p(\vec{x})} \left[ \vec{x} \right]} & = 0 \\
-      \Ep{(y - \vec{w}^T \vec{x}) (\vec{x} - E_{p(\vec{x})} \left[ \vec{x} \right])} & = 0
+      \Ep{(y - \vec{w}^T \vec{x}) E_{p(\vec{x})} \left[ A \vec{x} \right]} & = 0 \\
+      \Ep{(y - \vec{w}^T \vec{x}) A \vec{x}}
+          - \Ep{(y - \vec{w}^T \vec{x}) E_{p(\vec{x})} \left[ A \vec{x} \right]} & = 0 \\
+      \Ep{(y - \vec{w}^T \vec{x}) (A \vec{x} - E_{p(\vec{x})} \left[ A \vec{x} \right])} & = 0
     \end{align*}
-    \therefore the correration between data and prediction errors is 0.
+    \therefore the correration between any linear function of data and prediction errors is 0.
 
   \item
     \begin{gather*}
