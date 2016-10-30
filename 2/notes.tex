@@ -1,0 +1,136 @@
+\documentclass{introtosml}
+\nth{1}
+
+\newcommand\Ep[1]{E_{p(\vec{x}, y)} \left[ #1 \right]}
+\newcommand\fancyb{\beta_{\hat{y}, y}}
+
+\begin{document}
+
+\maketitle
+
+\begin{p}
+  \item
+    \begin{align*}
+      \frac{\partial}{\partial \vec{w}} R(\vec{w}) & = 0 \\
+      \frac{\partial}{\partial \vec{w}} \Ep{(y - {\vec{w}}^T \vec{x})^2 } & = 0 \\
+      \Ep{2 (y - {\vec{w}}^T \vec{x}) (-\vec{x})} & = 0 \\
+      \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \label{eq:corr0} \\
+      A \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \\
+      \Ep{(y - {\vec{w}}^T \vec{x}) A \vec{x}} & = 0
+    \end{align*}
+
+  \item
+    \begin{align*}
+      \Ep{y - \vec{w}^T \vec{x}} & = 0 \\
+      \Ep{(y - \vec{w}^T \vec{x}) E_{p(\vec{x})} \left[ A \vec{x} \right]} & = 0 \\
+      \Ep{(y - \vec{w}^T \vec{x}) A \vec{x}}
+          - \Ep{(y - \vec{w}^T \vec{x}) E_{p(\vec{x})} \left[ A \vec{x} \right]} & = 0 \\
+      \Ep{(y - \vec{w}^T \vec{x}) (A \vec{x} - E_{p(\vec{x})} \left[ A \vec{x} \right])} & = 0
+    \end{align*}
+    \therefore the correration between any linear function of data and prediction errors is 0.
+
+  \item
+    \begin{gather*}
+      \begin{aligned}
+        \hat{\vec{w}}
+        & = \argmin_\vec{w} \sum_{i=1}^N (y_i - \vec{w}^T \vec{x}_i)^2 \\
+        & = (X^T X)^{-1} X^T y
+      \end{aligned} \\
+      \text{Let} C \in \field{R}^{(d+1) \times (d+1)} \text{be a diagonal matrix}
+          \st \tilde{X} = XC \\
+      \begin{aligned}
+        \hat{\tilde{\vec{w}}}
+        & = \argmin_\vec{w} \sum_{i=1}^N (y_i - \vec{w}^T \tilde{\vec{x}}_i)^2 \\
+        & = (\tilde{X}^T \tilde{X})^{-1} \tilde{X}^T y \\
+        & = ((XC)^T XC)^{-1} (XC)^T y \\
+        & = (CX^T XC)^{-1} CX^T y \\
+        & = C^{-1} (X^T X)^{-1} C^{-1} CX^T y \\
+        & = C^{-1} (X^T X)^{-1} X^T y
+      \end{aligned} \\
+      \begin{aligned}
+        \tilde{X}\hat{\tilde{\vec{w}}}
+        & = XCC^{-1} (X^T X)^{-1} X^T y \\
+        & = X (X^T X)^{-1} X^T y \\
+        & = X \hat{\vec{w}} \text{as required}
+      \end{aligned}
+    \end{gather*}
+
+  \item
+    \begin{gather*}
+      \begin{aligned}
+        \hat{\sigma^2}
+        & = \argmax_{\sigma^2} \sum_{i=1}^N \log p(y_i|\vec{x}_i; \vec{w}, \sigma) \\
+        & = \argmax_{\sigma^2} - \frac{1}{2 \sigma^2}
+            \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 - N \log \sigma \sqrt{2 \pi} \\
+        & = \argmin_{\sigma^2} \frac{1}{\sigma^2}
+            \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 + N \log 2 \pi \sigma^2 \\
+        & = \argmin_{\sigma^2} \frac{1}{\sigma^2}
+            \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 + N \log \sigma^2
+      \end{aligned} \\
+      \begin{aligned}
+      \frac{\partial}{\partial \sigma^2} \frac{1}{\sigma^2}
+          \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 + N \log \sigma^2 & = 0 \\
+      - \frac{1}{\sigma^4}
+          \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 + \frac{N}{\sigma^2} & = 0 \\
+      \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 - N \sigma^2 & = 0 \\
+      \sigma^2 & = \frac{1}{N} \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2 \\
+      \therefore \hat{\sigma^2} & = \frac{1}{N} \sum_{i=1}^N (y_i - f(\vec{x}_i; \vec{w}))^2
+      \end{aligned}
+    \end{gather*}
+
+    The experimental result on a validation dataset showed that there are huge
+    gaps of loss, $\sigma^2$, and log-likelihood between a linear model and, a quadratic
+    and cubic models.
+    The lienar model showed much greater values in terms of loss and $\sigma^2$.
+    The others achieved much better log-likelihood values.
+
+    Based on the evaluation on a validation dataset, I select a quadratic model
+    as model A.
+    The reasons are listed below.
+    \begin{itemize}
+      \item Computional efficiency for training and prediction \\
+            There are fewer times of multiplication compared with a cubic one.
+      \item Low complexity \\
+            It has one fewer parameters compared with a cubic one.
+      \item Acceptably low loss value \\
+            While a linear model is more efficient and simpler than a quadratic one,
+            it showed too large loss on both training and validation datasets.
+            That means a linear one is not expressive enough for the data.
+    \end{itemize}
+
+  \item
+    \begin{gather*}
+      \text{Let} \fancyb = \begin{cases}
+        1 & \mif \hat{y} \le y \\
+        \alpha & \otherwise
+      \end{cases} \\
+      \begin{aligned}
+        l_\alpha(\hat{y}, y)
+        & = \begin{cases}
+          (\hat{y} - y)^2 & \mif \hat{y} \le y \\
+          \alpha (\hat{y} - y)^2 & \otherwise
+        \end{cases} \\
+        & = \fancyb (\hat{y} - y)^2
+      \end{aligned} \\
+      \begin{aligned}
+        \frac{\partial}{\partial \vec{w}} L_\alpha
+        & = \frac{\partial}{\partial \vec{w}}
+            \frac{1}{N} \sum_{i=1}^N l_\alpha(\hat{y}, y) \\
+        & = \frac{\partial}{\partial \vec{w}}
+            \frac{1}{N} \sum_{i=1}^N \fancyb (\hat{y}_i - y_i)^2 \\
+        & = \frac{\partial}{\partial \vec{w}}
+            \frac{1}{N} \sum_{i=1}^N \fancyb (\vec{w}^T \phi_i(\vec{x}) - y_i)^2 \\
+            & = \frac{1}{N} \sum_{i=1}^N 2 \fancyb (\vec{w}^T \phi_i(\vec{x}) - y_i) \phi_i(\vec{x}) \\
+      \end{aligned}
+    \end{gather*}
+
+    Here, I also choose a quadratic model as model B with the exactly same reasons as model A.
+
+    While I cannot compare model A and B because I chose the same quadratic one,
+    I think it is not reasonable to compare them because they are evaluated
+    on different tasks with symmetric and asymmetric loss functions.
+    The results of different experiments just explain which model is better
+    on which experiment.
+\end{p}
+
+\end{document}
