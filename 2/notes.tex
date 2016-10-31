@@ -1,5 +1,5 @@
 \documentclass{introtosml}
-\nth{1}
+\nth{2}
 
 \newcommand\Ep[1]{E_{p(\vec{x}, y)} \left[ #1 \right]}
 \newcommand\fancyb{\beta_{\hat{y}, y}}
@@ -9,6 +9,20 @@
 \maketitle
 
 \begin{p}
+  \item
+    \begin{align*}
+      R(hr; q)
+      & = \int_\vec{x} \sum_{c=1}^C \sum_{c'=1}^C
+          L_{0/1} (c', c) q(c_r = c' | \vec{x}) p(\vec{x}, y = c) d\vec{x} \\
+      & = \int_\vec{x} R(h_r | \vec{x}) p(\vec{x}) d\vec{x} \\
+      \text{where} R(h_r | \vec{x})
+      = \sum_{c=1}^C \sum_{c'=1}^C L_{0/1} (c', c) q(c_r = c' | \vec{x}) p(y = c | \vec{x}) \\
+      R(h^*)
+      & = \int_\vec{x} R(h^* | \vec{x}) p(\vec{x}) d\vec{x} \\
+      \text{where} R(h^* | \vec{x})
+      = \sum_{c=1}^C L_{0/1} (h^*(\vec{x}), c) p(y = c | \vec{x}) \\
+    \end{align*}
+
   \item
     \begin{align*}
       \frac{\partial}{\partial \vec{w}} R(\vec{w}) & = 0 \\
