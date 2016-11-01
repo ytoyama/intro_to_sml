@@ -14,6 +14,7 @@
 \newcommand{\R}[1]{R(#1 | \vec{x})}
 
 \newcommand{\w}{\vec{w}}
+\newcommand{\bb}{\vec{b}}
 
 \begin{document}
 
@@ -90,7 +91,7 @@
     \end{align*}
     Let $\log p(c_i|x) = \w_i \cdot \x$.
     \begin{align*}
-      \w_i \x - \w_j \cdot \x & = \w_{ij} \cdot \x \\
+      \w_i \cdot \x - \w_j \cdot \x & = \w_{ij} \cdot \x \\
       \w_{ij} & = \w_i - \w_j
     \end{align*}
     \begin{align*}
@@ -104,11 +105,35 @@
     If the number of classes equals 2,
     \begin{align*}
       \frac{e^{\w_j \cdot \x}}{\sum_{i=1}^C e^{\w_i \cdot \x}}
-      & = \frac{1}{\sum_{i=1}^C e^{(\w_i - \w_j) \cdot \x}}
-      & = \sigma((\w_i - \w_j) \cdot \x)
+      & = \frac{1}{\sum_{i=1}^C e^{(\w_i - \w_j) \cdot \x}} \\
+      & = \sigma((\w_i - \w_j) \cdot \x) \\
       & = \sigma(\vec{v} \cdot \x)
     \end{align*}
+    \therefore In the binary case the softmax model is equivalent
+    to the logistic regression model.
 
+  \item
+    \begin{gather*}
+      \begin{aligned}
+        L(Y|X; W, \bb)
+        & \approx L(y|\x; W, \bb) \\
+        & = - \log \hat{p}(y|\x; W, \bb) + \lambda \norm{W}^2 \\
+        & = - \log \frac{e^{W_y \cdot \x + \bb_y}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
+            + \lambda \norm{W}^2
+      \end{aligned} \\
+      \begin{aligned}
+        \frac{\partial}{\partial W_{ci}} L(y|\x; W, \bb)
+        & = - p(y=c) \x_i + \frac{\x_i e^{W_c \cdot \x + \bb_c}}
+                                 {\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
+            + \lambda \norm{W}^2 \\
+        & = (\frac{\x_i e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
+             - p(y=c)) \x_i + \lambda \norm{W}^2
+      \end{aligned} \\
+      \begin{aligned}
+        \frac{\partial}{\partial \bb_{c}} L(y|\x; W, \bb)
+        & = p(y=c) - \frac{\x_i e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
+      \end{aligned} \\
+    \end{gather*}
 \end{p}
 
 \end{document}
