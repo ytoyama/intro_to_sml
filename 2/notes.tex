@@ -59,8 +59,8 @@
     Let $M$ be the number of augmented data points.
     \begin{gather*}
       \sum_{i=1}^{N+M} (y_i - \w^T \x_i)^2
-          = \sum_{i=1}^{N} (y_i - \w^T \x_i)^2 + \lambda \sum_{j=1}^d \norm{\w}^2 \\
-      \sum_{i=N+1}^{N+M} (y_i - \w^T \x_i)^2 = \lambda \sum_{j=1}^d \norm{\w}^2
+          = \sum_{i=1}^{N} (y_i - \w^T \x_i)^2 + \lambda \norm{\w}^2 \\
+      \sum_{i=N+1}^{N+M} (y_i - \w^T \x_i)^2 = \lambda \norm{\w}^2
     \end{gather*}
     Let $y_i = 0$ and $\x_i = [0, a, \ldots, a]^T $.
     \begin{gather*}
