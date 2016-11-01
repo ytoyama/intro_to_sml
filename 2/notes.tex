@@ -68,18 +68,18 @@
         \sum_{i=N+1}^{N+M} a^2 \norm{\w}^2 & = \lambda \norm{\w}^2 \\
         M a^2 \norm{\w}^2 & = \lambda \norm{\w}^2 \\
         M a^2 & = \lambda
-      \end{aligned}
-      \therefore \vec{y}' = \begin{array}{cccc}
+      \end{aligned} \\
+      \therefore \vec{y}' = \left[\begin{array}{cccc}
         y_1 \\ \vdots \\ y_N \\ 0 \\ \vdots \\ 0
-      \end{array},
-      X' = \begin{array}{cccc}
+      \end{array}\right],
+      X' = \left[\begin{array}{cccc}
         1 & x_{11} & \cdots & x_{1d} \\
         \vdots & \vdots & \vdots & \vdots  \\
         1 & x_{N1} & \cdots & x_{Nd} \\
         0 & a & \vdots & a \\
         \vdots & \vdots & \vdots & \vdots  \\
         0 & a & \vdots & a \\
-      \end{array} \\
+      \end{array}\right] \\
       \st Ma^2 = \lambda \text{(where $M$ is the number of augmented data points)}
     \end{gather*}
 
