@@ -125,14 +125,23 @@
         \frac{\partial}{\partial W_{ci}} L(y|\x; W, \bb)
         & = - p(y=c) \x_i + \frac{\x_i e^{W_c \cdot \x + \bb_c}}
                                  {\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
-            + \lambda \norm{W}^2 \\
-        & = (\frac{\x_i e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
-             - p(y=c)) \x_i + \lambda \norm{W}^2
+            + \lambda W_{ci}
+        & = \left(\frac{e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
+            - p(y=c)\right) \x_i + \lambda W_{ci}
       \end{aligned} \\
       \begin{aligned}
         \frac{\partial}{\partial \bb_{c}} L(y|\x; W, \bb)
-        & = p(y=c) - \frac{\x_i e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
+        & = \frac{e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}} - p(y=c)
       \end{aligned} \\
+    \end{gather*}
+    \therefore The update equasions are the below.
+    \begin{gather*}
+      W_{ci} \leftarrow W_{ci} - \eta
+      \left(\left(\frac{e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
+            - p(y=c)\right) \x_i + \lambda W_{ci}\right) \\
+      \bb_c \leftarrow \bb_c - \eta
+      \left( \frac{e^{W_c \cdot \x + \bb_c}}
+                  {\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}} - p(y=c)\right)
     \end{gather*}
 \end{p}
 
