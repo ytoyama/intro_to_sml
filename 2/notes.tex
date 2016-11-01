@@ -3,6 +3,7 @@
 
 \newcommand\Ep[1]{E_{p(\vec{x}, y)} \left[ #1 \right]}
 \newcommand\fancyb{\beta_{\hat{y}, y}}
+
 \newcommand{\x}{\vec{x}}
 \newcommand{\q}{q(c_r = c' | \x)}
 \newcommand{\qc}{q(c_r = c | \x)}
@@ -11,6 +12,8 @@
 \newcommand{\pyxc}{\pyx{c}}
 \newcommand{\intx}[1]{\int_\vec{x} #1 d\vec{x}}
 \newcommand{\R}[1]{R(#1 | \vec{x})}
+
+\newcommand{\w}{\vec{w}}
 
 \begin{document}
 
@@ -53,14 +56,32 @@
     \end{gather*}
 
   \item
-    \begin{align*}
-      \frac{\partial}{\partial \vec{w}} R(\vec{w}) & = 0 \\
-      \frac{\partial}{\partial \vec{w}} \Ep{(y - {\vec{w}}^T \vec{x})^2 } & = 0 \\
-      \Ep{2 (y - {\vec{w}}^T \vec{x}) (-\vec{x})} & = 0 \\
-      \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \label{eq:corr0} \\
-      A \Ep{(y - {\vec{w}}^T \vec{x}) \vec{x}} & = 0 \\
-      \Ep{(y - {\vec{w}}^T \vec{x}) A \vec{x}} & = 0
-    \end{align*}
+    Let $M$ be the number of augmented data points.
+    \begin{gather*}
+      \sum_{i=1}^{N+M} (y_i - \w^T \x_i)^2
+          = \sum_{i=1}^{N} (y_i - \w^T \x_i)^2 + \lambda \sum_{j=1}^d \norm{\w}^2 \\
+      \sum_{i=N+1}^{N+M} (y_i - \w^T \x_i)^2 = \lambda \sum_{j=1}^d \norm{\w}^2
+    \end{gather*}
+    Let $y_i = 0$ and $\x_i = [0, a, \ldots, a]^T $.
+    \begin{gather*}
+      \begin{aligned}
+        \sum_{i=N+1}^{N+M} a^2 \norm{\w}^2 & = \lambda \norm{\w}^2 \\
+        M a^2 \norm{\w}^2 & = \lambda \norm{\w}^2 \\
+        M a^2 & = \lambda
+      \end{aligned}
+      \therefore \vec{y}' = \begin{array}{cccc}
+        y_1 \\ \vdots \\ y_N \\ 0 \\ \vdots \\ 0
+      \end{array},
+      X' = \begin{array}{cccc}
+        1 & x_{11} & \cdots & x_{1d} \\
+        \vdots & \vdots & \vdots & \vdots  \\
+        1 & x_{N1} & \cdots & x_{Nd} \\
+        0 & a & \vdots & a \\
+        \vdots & \vdots & \vdots & \vdots  \\
+        0 & a & \vdots & a \\
+      \end{array} \\
+      \st Ma^2 = \lambda \text{(where $M$ is the number of augmented data points)}
+    \end{gather*}
 
   \item
     \begin{align*}

@@ -25,6 +25,7 @@
 \newcommand\field[1]{\mathbb{#1}}
 \renewcommand\vec[1]{\mathbf{#1}}
 
+\newcommand{\norm}[1]{\left\Vert #1\right\Vert}
 \renewcommand\ker[1]{\mathrm{ker}(#1)}
 \newcommand\im[1]{\mathrm{im}(#1)}
 \newcommand\mspan[1]{\mathrm{Span}(#1)}
