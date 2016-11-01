@@ -8,7 +8,7 @@
 \newcommand{\qc}{q(c_r = c | \x)}
 \newcommand{\pyx}[1]{p(y = #1 | \x)}
 \newcommand{\pyxh}{\pyx{h^*(\x)}}
-\newcommand{\pyxc}{\pyx{c'}}
+\newcommand{\pyxc}{\pyx{c}}
 \newcommand{\intx}[1]{\int_\vec{x} #1 d\vec{x}}
 \newcommand{\R}[1]{R(#1 | \vec{x})}
 
@@ -43,10 +43,13 @@
         \R{h_r} - \R{h^*}
         & = \sum_{c=1}^C (1 - \qc) \pyxc - (1 - \pyxh) \\
         & = \pyxh - \sum_{c=1}^C \qc \pyxc \\
-        & = \sum{c=1}^C \qc (\pyxh - \pyxc) \\
+        & = \sum_{c=1}^C \qc (\pyxh - \pyxc) \\
         & \ge 0
       \end{aligned} \\
-      \therefore R(h_r; q) \ge R(h^*)
+      \begin{aligned}
+        \R{h_r} & \ge \R{h^*} \\
+        \therefore R(h_r; q) & \ge R(h^*)
+      \end{aligned} \\
     \end{gather*}
 
   \item
