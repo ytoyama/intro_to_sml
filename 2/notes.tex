@@ -3,6 +3,14 @@
 
 \newcommand\Ep[1]{E_{p(\vec{x}, y)} \left[ #1 \right]}
 \newcommand\fancyb{\beta_{\hat{y}, y}}
+\newcommand{\x}{\vec{x}}
+\newcommand{\q}{q(c_r = c' | \x)}
+\newcommand{\qc}{q(c_r = c | \x)}
+\newcommand{\pyx}[1]{p(y = #1 | \x)}
+\newcommand{\pyxh}{\pyx{h^*(\x)}}
+\newcommand{\pyxc}{\pyx{c'}}
+\newcommand{\intx}[1]{\int_\vec{x} #1 d\vec{x}}
+\newcommand{\R}[1]{R(#1 | \vec{x})}
 
 \begin{document}
 
@@ -10,18 +18,36 @@
 
 \begin{p}
   \item
-    \begin{align*}
-      R(hr; q)
-      & = \int_\vec{x} \sum_{c=1}^C \sum_{c'=1}^C
-          L_{0/1} (c', c) q(c_r = c' | \vec{x}) p(\vec{x}, y = c) d\vec{x} \\
-      & = \int_\vec{x} R(h_r | \vec{x}) p(\vec{x}) d\vec{x} \\
-      \text{where} R(h_r | \vec{x})
-      = \sum_{c=1}^C \sum_{c'=1}^C L_{0/1} (c', c) q(c_r = c' | \vec{x}) p(y = c | \vec{x}) \\
-      R(h^*)
-      & = \int_\vec{x} R(h^* | \vec{x}) p(\vec{x}) d\vec{x} \\
-      \text{where} R(h^* | \vec{x})
-      = \sum_{c=1}^C L_{0/1} (h^*(\vec{x}), c) p(y = c | \vec{x}) \\
-    \end{align*}
+    \begin{gather*}
+      \begin{aligned}
+        R(h_r; q)
+        & = \intx{\sum_{c=1}^C \sum_{c'=1}^C L_{0/1}(c', c) \q p(\vec{x}, y = c)} \\
+        & = \intx{\R{h_r} p(\vec{x})}
+      \end{aligned} \\
+      \begin{aligned}
+        \text{where} \R{h_r}
+        & = \sum_{c=1}^C \sum_{c'=1}^C L_{0/1} (c', c) \q \pyxc \\
+        & = \sum_{c=1}^C \sum_{c' \ne c}^C \q \pyxc \\
+        & = \sum_{c=1}^C (1 - \qc) \pyxc
+      \end{aligned} \\
+      \begin{aligned}
+        R(h^*) & = \intx{\R{h^*} p(\vec{x})}
+      \end{aligned} \\
+      \begin{aligned}
+        \text{where} \R{h^*}
+        & = \sum_{c=1}^C L_{0/1} (h^*(\vec{x}), c) \pyxc \\
+        & = \sum_{c \ne h^*}^C \pyxc \\
+        & = 1 - \pyxh
+      \end{aligned} \\
+      \begin{aligned}
+        \R{h_r} - \R{h^*}
+        & = \sum_{c=1}^C (1 - \qc) \pyxc - (1 - \pyxh) \\
+        & = \pyxh - \sum_{c=1}^C \qc \pyxc \\
+        & = \sum{c=1}^C \qc (\pyxh - \pyxc) \\
+        & \ge 0
+      \end{aligned} \\
+      \therefore R(h_r; q) \ge R(h^*)
+    \end{gather*}
 
   \item
     \begin{align*}
