@@ -84,6 +84,22 @@
     \end{gather*}
 
   \item
+    \begin{align*}
+      \forall i, j, \log \frac{p(c_i|x)}{p(c_j|x)} & = \w_{ij} \x
+      \log p(c_i|\x) - \log p(c_j|\x) & = \w_{ij} \x
+    \end{align*}
+    Let $\log p(c_i|x) = \w_i \x$.
+    \begin{align*}
+      \w_i \x - \w_j \x & = \w_{ij} \x \\
+      \w_{ij} & = \w_i - \w_j
+    \end{align*}
+    \begin{align*}
+      p(c_i|\x) = e^{\w_{ij} \x} p(c_j|\x) \\
+      p(c_i|\x) = e^{\w_i \x} e^{- \w_j \x} p(c_j|\x) \\
+      1 = \sum_{i=1}^C e^{\w_i \x} e^{- \w_j \x} p(c_j|\x) \\
+      p(c_j|\x) = \frac{e^{\w_j \x}}{\sum_{i=1}^C e^{\w_i \x}}
+    \end{align*}
+    \therefore the softmax model corresponds to modeling the log-odds between any two classes.
 \end{p}
 
 \end{document}
