@@ -89,7 +89,10 @@
       \forall i, j, \log \frac{p(c_i|\x)}{p(c_j|\x)} & = \w_{ij} \cdot \x \\
       \log p(c_i|\x) - \log p(c_j|\x) & = \w_{ij} \cdot \x
     \end{align*}
-    Let $\log p(c_i|x) = \w_i \cdot \x$.
+    Let $\log p(c_i|x) = \w_i \cdot \x$. This doesn't break generality
+    of the model above because $\w_{ij} = - \w_{ji}$ obviously
+    and for all $i$ and $j$ we can pick any $\w_{ij}$
+    even if either $\w_i$ or $\w_j$ is fixed.
     \begin{align*}
       \w_i \cdot \x - \w_j \cdot \x & = \w_{ij} \cdot \x \\
       \w_{ij} & = \w_i - \w_j
