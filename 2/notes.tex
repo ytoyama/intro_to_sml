@@ -120,9 +120,9 @@
       \begin{aligned}
         L(Y|X; W, \bb)
         & \approx L(y|\x; W, \bb) \\
-        & = - \log \hat{p}(y|\x; W, \bb) + \lambda \norm{W}^2 \\
+        & = - \log \hat{p}(y|\x; W, \bb) + \frac{\lambda}{2} \norm{W}^2 \\
         & = - \log \frac{e^{W_y \cdot \x + \bb_y}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
-            + \lambda \norm{W}^2
+            + \frac{\lambda}{2} \norm{W}^2
       \end{aligned} \\
       \begin{aligned}
         \frac{\partial}{\partial W_{ci}} L(y|\x; W, \bb)
