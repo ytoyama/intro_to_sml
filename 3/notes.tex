@@ -1,0 +1,154 @@
+\documentclass{introtosml}
+\nth{3}
+
+\newcommand\Ep[1]{E_{p(\vec{x}, y)} \left[ #1 \right]}
+\newcommand\fancyb{\beta_{\hat{y}, y}}
+
+\newcommand{\x}{\vec{x}}
+\newcommand{\q}{q(c_r = c' | \x)}
+\newcommand{\qc}{q(c_r = c | \x)}
+\newcommand{\pyx}[1]{p(y = #1 | \x)}
+\newcommand{\pyxh}{\pyx{h^*(\x)}}
+\newcommand{\pyxc}{\pyx{c}}
+\newcommand{\intx}[1]{\int_\vec{x} #1 d\vec{x}}
+\newcommand{\R}[1]{R(#1 | \vec{x})}
+
+\newcommand{\w}{\vec{w}}
+\newcommand{\bb}{\vec{b}}
+
+\begin{document}
+
+\maketitle
+
+\begin{p}
+  \item
+    \begin{gather*}
+      \begin{aligned}
+        R(h_r; q)
+        & = \intx{\sum_{c=1}^C \sum_{c'=1}^C L_{0/1}(c', c) \q p(\vec{x}, y = c)} \\
+        & = \intx{\R{h_r} p(\vec{x})}
+      \end{aligned} \\
+      \begin{aligned}
+        \text{where} \R{h_r}
+        & = \sum_{c=1}^C \sum_{c'=1}^C L_{0/1} (c', c) \q \pyxc \\
+        & = \sum_{c=1}^C \sum_{c' \ne c}^C \q \pyxc \\
+        & = \sum_{c=1}^C (1 - \qc) \pyxc
+      \end{aligned} \\
+      \begin{aligned}
+        R(h^*) & = \intx{\R{h^*} p(\vec{x})}
+      \end{aligned} \\
+      \begin{aligned}
+        \text{where} \R{h^*}
+        & = \sum_{c=1}^C L_{0/1} (h^*(\vec{x}), c) \pyxc \\
+        & = \sum_{c \ne h^*}^C \pyxc \\
+        & = 1 - \pyxh
+      \end{aligned} \\
+      \begin{aligned}
+        \R{h_r} - \R{h^*}
+        & = \sum_{c=1}^C (1 - \qc) \pyxc - (1 - \pyxh) \\
+        & = \pyxh - \sum_{c=1}^C \qc \pyxc \\
+        & = \sum_{c=1}^C \qc (\pyxh - \pyxc) \\
+        & \ge 0
+      \end{aligned} \\
+      \begin{aligned}
+        \therefore \R{h_r} & \ge \R{h^*} \\
+        \therefore R(h_r; q) & \ge R(h^*)
+      \end{aligned} \\
+    \end{gather*}
+
+  \item
+    Let $M$ be the number of augmented data points.
+    \begin{gather*}
+      \sum_{i=1}^{N+M} (y_i - \w^T \x_i)^2
+          = \sum_{i=1}^{N} (y_i - \w^T \x_i)^2 + \lambda \norm{\w}^2 \\
+      \sum_{i=N+1}^{N+M} (y_i - \w^T \x_i)^2 = \lambda \norm{\w}^2
+    \end{gather*}
+    Let $y_i = 0$ and $\x_i = [0, a, \ldots, a]^T $.
+    \begin{gather*}
+      \begin{aligned}
+        \sum_{i=N+1}^{N+M} a^2 \norm{\w}^2 & = \lambda \norm{\w}^2 \\
+        M a^2 \norm{\w}^2 & = \lambda \norm{\w}^2 \\
+        M a^2 & = \lambda
+      \end{aligned} \\
+      \therefore \vec{y}' = \left[\begin{array}{cccc}
+        y_1 \\ \vdots \\ y_N \\ 0 \\ \vdots \\ 0
+      \end{array}\right],
+      X' = \left[\begin{array}{cccc}
+        1 & x_{11} & \cdots & x_{1d} \\
+        \vdots & \vdots & \vdots & \vdots  \\
+        1 & x_{N1} & \cdots & x_{Nd} \\
+        0 & a & \vdots & a \\
+        \vdots & \vdots & \vdots & \vdots  \\
+        0 & a & \vdots & a \\
+      \end{array}\right] \\
+      \st Ma^2 = \lambda \text{(where $M$ is the number of augmented data points)}
+    \end{gather*}
+
+  \item
+    \begin{align*}
+      \forall i, j, \log \frac{p(c_i|\x)}{p(c_j|\x)} & = \w_{ij} \cdot \x \\
+      \log p(c_i|\x) - \log p(c_j|\x) & = \w_{ij} \cdot \x
+    \end{align*}
+    Let $\log p(c_i|x) = \w_i \cdot \x$. This doesn't break generality
+    of the model above because $\w_{ij} = - \w_{ji}$ obviously
+    and for all $i$ and $j$ we can pick any $\w_{ij}$
+    even if either $\w_i$ or $\w_j$ is fixed.
+    \begin{align*}
+      \w_i \cdot \x - \w_j \cdot \x & = \w_{ij} \cdot \x \\
+      \w_{ij} & = \w_i - \w_j
+    \end{align*}
+    \begin{align*}
+      p(c_i|\x) = e^{\w_{ij} \cdot \x} p(c_j|\x) \\
+      p(c_i|\x) = e^{\w_i \cdot \x} e^{- \w_j \cdot \x} p(c_j|\x) \\
+      1 = \sum_{i=1}^C e^{\w_i \cdot \x} e^{- \w_j \cdot \x} p(c_j|\x) \\
+      p(c_j|\x) = \frac{e^{\w_j \cdot \x}}{\sum_{i=1}^C e^{\w_i \cdot \x}}
+    \end{align*}
+    \therefore the softmax model corresponds to modeling the log-odds
+    between any two classes. \\
+    If the number of classes equals 2,
+    \begin{align*}
+      \frac{e^{\w_j \cdot \x}}{\sum_{i=1}^C e^{\w_i \cdot \x}}
+      & = \frac{1}{\sum_{i=1}^C e^{(\w_i - \w_j) \cdot \x}} \\
+      & = \sigma((\w_i - \w_j) \cdot \x) \\
+      & = \sigma(\vec{v} \cdot \x)
+    \end{align*}
+    \therefore In the binary case the softmax model is equivalent
+    to the logistic regression model.
+
+  \item
+    \begin{gather*}
+      \begin{aligned}
+        L(Y|X; W, \bb)
+        & \approx L(y|\x; W, \bb) \\
+        & = - \log \hat{p}(y|\x; W, \bb) + \frac{\lambda}{2} \norm{W}^2 \\
+        & = - \log \frac{e^{W_y \cdot \x + \bb_y}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
+            + \frac{\lambda}{2} \norm{W}^2
+      \end{aligned} \\
+      \begin{aligned}
+        \frac{\partial}{\partial W_{ci}} L(y|\x; W, \bb)
+        & = - p(y=c) \x_i + \frac{\x_i e^{W_c \cdot \x + \bb_c}}
+                                 {\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
+            + \lambda W_{ci} \\
+        & = \left(\frac{e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
+            - p(y=c)\right) \x_i + \lambda W_{ci}
+      \end{aligned} \\
+      \begin{aligned}
+        \frac{\partial}{\partial \bb_{c}} L(y|\x; W, \bb)
+        & = \frac{e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}} - p(y=c)
+      \end{aligned} \\
+    \end{gather*}
+    \therefore The update equasions are the below.
+    \begin{gather*}
+      W_{ci} \leftarrow W_{ci} - \eta
+      \left(\left(\frac{e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
+            - p(y=c)\right) \x_i + \lambda W_{ci}\right) \\
+      \bb_c \leftarrow \bb_c - \eta
+      \left( \frac{e^{W_c \cdot \x + \bb_c}}
+                  {\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}} - p(y=c)\right)
+    \end{gather*}
+
+  \item
+    Please, see a Jupyter notebook file submitted together.
+\end{p}
+
+\end{document}
