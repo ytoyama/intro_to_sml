@@ -25,14 +25,17 @@
     A decision tree can classify linearly separable data.
     A boundary made by such a tree looks like stairs
     approximating $\w^T \x + w_0 = 0$.
-    And, in the worst case, its depth is $\lceil \log \frac{N}{2} \rceil + 1$
-    because we can balance the tree along $x_1$.
+    And, in the worst case, its depth is
+    $\lceil \log \lceil \frac{N}{2} \rceil \rceil + 1$
+    because we can separate a space of $\x$
+    into $\lceil \frac{N}{2} \rceil$ thin regions
+    and balance the tree along $\x_1$.
 
   \item
     A decision tree can classify data points which are not linearly separable
-    by separating a space of $\x$ into $N - 1$ thin regions along $x_1$.
-    And, in the worst case, its depth is $\lceil \log (N - 1) \rceil$
-    balancing
+    by separating a space of $\x$ into $N$ thin regions along $\x_1$.
+    And, in the worst case, its depth is $\lceil \log N \rceil$
+    when the tree is balanced in the same way as in the problem 1.
 
   \item
     Let $M$ be the number of augmented data points.
