@@ -38,63 +38,17 @@
     when the tree is balanced in the same way as in the problem 1.
 
   \item
-    Let $M$ be the number of augmented data points.
-    \begin{gather*}
-      \sum_{i=1}^{N+M} (y_i - \w^T \x_i)^2
-          = \sum_{i=1}^{N} (y_i - \w^T \x_i)^2 + \lambda \norm{\w}^2 \\
-      \sum_{i=N+1}^{N+M} (y_i - \w^T \x_i)^2 = \lambda \norm{\w}^2
-    \end{gather*}
-    Let $y_i = 0$ and $\x_i = [0, a, \ldots, a]^T $.
-    \begin{gather*}
-      \begin{aligned}
-        \sum_{i=N+1}^{N+M} a^2 \norm{\w}^2 & = \lambda \norm{\w}^2 \\
-        M a^2 \norm{\w}^2 & = \lambda \norm{\w}^2 \\
-        M a^2 & = \lambda
-      \end{aligned} \\
-      \therefore \vec{y}' = \left[\begin{array}{cccc}
-        y_1 \\ \vdots \\ y_N \\ 0 \\ \vdots \\ 0
-      \end{array}\right],
-      X' = \left[\begin{array}{cccc}
-        1 & x_{11} & \cdots & x_{1d} \\
-        \vdots & \vdots & \vdots & \vdots  \\
-        1 & x_{N1} & \cdots & x_{Nd} \\
-        0 & a & \vdots & a \\
-        \vdots & \vdots & \vdots & \vdots  \\
-        0 & a & \vdots & a \\
-      \end{array}\right] \\
-      \st Ma^2 = \lambda \text{(where $M$ is the number of augmented data points)}
-    \end{gather*}
 
   \item
     \begin{align*}
-      \forall i, j, \log \frac{p(c_i|\x)}{p(c_j|\x)} & = \w_{ij} \cdot \x \\
-      \log p(c_i|\x) - \log p(c_j|\x) & = \w_{ij} \cdot \x
+      \frac{\partial}{\partial \alpha_t} L(H_t, X) & = 0 \\
+      \frac{\partial}{\partial \alpha_t} \left(
+        e^{-\alpha_t} (1 - \epsilon_t) + e^{\alpha_t} \epsilon_t
+      \right) & = 0 \\
+      - e^{-\alpha_t} (1 - \epsilon_t) + e^{\alpha_t} \epsilon_t & = 0 \\
+      e^{2 \alpha_t} & = \frac{1 - \epsilon_t}{\epsilon_t} \\
+      \alpha_t & = \frac{1}{2} \log \frac{1 - \epsilon_t}{\epsilon_t}
     \end{align*}
-    Let $\log p(c_i|x) = \w_i \cdot \x$. This doesn't break generality
-    of the model above because $\w_{ij} = - \w_{ji}$ obviously
-    and for all $i$ and $j$ we can pick any $\w_{ij}$
-    even if either $\w_i$ or $\w_j$ is fixed.
-    \begin{align*}
-      \w_i \cdot \x - \w_j \cdot \x & = \w_{ij} \cdot \x \\
-      \w_{ij} & = \w_i - \w_j
-    \end{align*}
-    \begin{align*}
-      p(c_i|\x) = e^{\w_{ij} \cdot \x} p(c_j|\x) \\
-      p(c_i|\x) = e^{\w_i \cdot \x} e^{- \w_j \cdot \x} p(c_j|\x) \\
-      1 = \sum_{i=1}^C e^{\w_i \cdot \x} e^{- \w_j \cdot \x} p(c_j|\x) \\
-      p(c_j|\x) = \frac{e^{\w_j \cdot \x}}{\sum_{i=1}^C e^{\w_i \cdot \x}}
-    \end{align*}
-    \therefore the softmax model corresponds to modeling the log-odds
-    between any two classes. \\
-    If the number of classes equals 2,
-    \begin{align*}
-      \frac{e^{\w_j \cdot \x}}{\sum_{i=1}^C e^{\w_i \cdot \x}}
-      & = \frac{1}{\sum_{i=1}^C e^{(\w_i - \w_j) \cdot \x}} \\
-      & = \sigma((\w_i - \w_j) \cdot \x) \\
-      & = \sigma(\vec{v} \cdot \x)
-    \end{align*}
-    \therefore In the binary case the softmax model is equivalent
-    to the logistic regression model.
 
   \item
     \begin{gather*}
