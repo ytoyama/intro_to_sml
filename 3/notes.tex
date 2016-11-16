@@ -22,39 +22,17 @@
 
 \begin{p}
   \item
-    \begin{gather*}
-      \begin{aligned}
-        R(h_r; q)
-        & = \intx{\sum_{c=1}^C \sum_{c'=1}^C L_{0/1}(c', c) \q p(\vec{x}, y = c)} \\
-        & = \intx{\R{h_r} p(\vec{x})}
-      \end{aligned} \\
-      \begin{aligned}
-        \text{where} \R{h_r}
-        & = \sum_{c=1}^C \sum_{c'=1}^C L_{0/1} (c', c) \q \pyxc \\
-        & = \sum_{c=1}^C \sum_{c' \ne c}^C \q \pyxc \\
-        & = \sum_{c=1}^C (1 - \qc) \pyxc
-      \end{aligned} \\
-      \begin{aligned}
-        R(h^*) & = \intx{\R{h^*} p(\vec{x})}
-      \end{aligned} \\
-      \begin{aligned}
-        \text{where} \R{h^*}
-        & = \sum_{c=1}^C L_{0/1} (h^*(\vec{x}), c) \pyxc \\
-        & = \sum_{c \ne h^*}^C \pyxc \\
-        & = 1 - \pyxh
-      \end{aligned} \\
-      \begin{aligned}
-        \R{h_r} - \R{h^*}
-        & = \sum_{c=1}^C (1 - \qc) \pyxc - (1 - \pyxh) \\
-        & = \pyxh - \sum_{c=1}^C \qc \pyxc \\
-        & = \sum_{c=1}^C \qc (\pyxh - \pyxc) \\
-        & \ge 0
-      \end{aligned} \\
-      \begin{aligned}
-        \therefore \R{h_r} & \ge \R{h^*} \\
-        \therefore R(h_r; q) & \ge R(h^*)
-      \end{aligned} \\
-    \end{gather*}
+    A decision tree can classify linearly separable data.
+    A boundary made by such a tree looks like stairs
+    approximating $\w^T \x + w_0 = 0$.
+    And, in the worst case, its depth is $lceil \log \frac{N}{2} \rceil + 1$
+    because we can balance the tree along $x_1$.
+
+  \item
+    A decision tree can classify data points which are not linearly separable
+    by separating a space of $\x$ into $N - 1$ thin regions along $x_1$.
+    And, in the worst case, its depth is $\lceil \log (N - 1) \rceil$
+    balancing
 
   \item
     Let $M$ be the number of augmented data points.
