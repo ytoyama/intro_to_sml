@@ -82,6 +82,15 @@
     \end{align*}
 
   \item
+    \begin{align*}
+      \argmin_\w \frac{1}{2} \norm{\w}^2
+      + C \sum_{i=1}^N \max \left\{ 0, 1 - y_i (\w^T \phi(\x_i) + w_0) \right\} \\
+      \argmin_\w \frac{1}{2} \norm{\w}^2 + C \sum_{i=1}^N \xi_i \\
+      \left\{ \begin{cases}
+        y_i (\w^T \phi(\x_i) + w_0) - 1 + \xi_i \ge 0 \\
+        \xi_i \ge 0
+      \end{cases} \right. \\
+    \end{align*}
 
   \item
     Please, see a Jupyter notebook file submitted together.
