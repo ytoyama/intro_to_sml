@@ -91,26 +91,26 @@
     \begin{align*}
       & \min_\w \frac{1}{2} \norm{\w}^2
       + C \sum_{i=1}^N \max \left\{ 0, 1 - y_i (\w^T \phi(\x_i) + w_0) \right\} \\
-      \leftrightarrow & \begin{gathered}
+      \Leftrightarrow & \begin{gathered}
         \max_{\w, \xi} - \frac{1}{2} \norm{\w}^2 - C \sum_{i=1}^N \xi_i \\
-        \left\{ \begin{cases}
+        \begin{cases}
           y_i (\w^T \phi(\x_i) + w_0) - 1 + \xi_i \ge 0 \\
           \xi_i \ge 0
-        \end{cases} \right. \\
+        \end{cases}
       \end{gathered}
     \end{align*}
     Using Langrange multipliers,
     \begin{align*}
-      \leftrightarrow & \begin{gathered}
+      \Leftrightarrow & \begin{gathered}
         \min_{\alpha_i, \mu_i} \max_{\w, \xi} \loss \\
-        \left\{ \begin{cases}
+        \begin{cases}
           \ywxxi \ge 0 \\
           \xi_i \ge 0 \\
           \alpha_i \ge 0 \\
           \mu_i \ge 0 \\
           \alpha_i (\ywxxi) = 0 \\
           \mu_i \xi_i = 0
-        \end{cases} \right.
+        \end{cases}
       \end{gathered}
     \end{align*}
     Let $L = \loss$.
