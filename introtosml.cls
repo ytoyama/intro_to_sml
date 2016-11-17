@@ -40,6 +40,8 @@
 
 \let\oldtherefore\therefore
 \renewcommand\therefore{\oldtherefore~}
+\let\oldbecause\because
+\renewcommand\because{\oldbecause~}
 
 \newenvironment{p}{\begin{enumerate}}{\end{enumerate}}
 \newenvironment{subp}{\begin{enumerate}[(a)]}{\end{enumerate}}
