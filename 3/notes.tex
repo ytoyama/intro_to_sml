@@ -16,7 +16,7 @@
 \newcommand{\w}{\vec{w}}
 \newcommand{\bb}{\vec{b}}
 
-\newcommand{\sumhi}{\sum_{i \st y_i \ne h_{T+1}(\x_i)}}
+\newcommand{\sumhi}[1][T+1]{\sum_{i \st y_i \ne h_{#1}(\x_i)}}
 \newcommand{\W}[1]{W_i^{(#1)}}
 \newcommand{\e}[1]{\epsilon_{#1}}
 \newcommand{\ett}{\e{T+1}}
@@ -61,6 +61,14 @@
     \begin{gather*}
       \therefore \sumhi \W{T+1} = \frac{1}{2}
     \end{gather*}
+    Assume $h_{T+2} = h_{T+1}$.
+    \begin{align*}
+      \sumhi \W{T+1} = \frac{1}{2} \\
+      \sumhi[T+2] \W{T+1} = \frac{1}{2} \\
+      \e{T+2} = \frac{1}{2} \\
+      \e{T+2} \ge \frac{1}{2} \contradiction
+    \end{align*}
+    \therefore $h_{T+2} \ne h_{T+1}$
 
   \item
     \begin{align*}
