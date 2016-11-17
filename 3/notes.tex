@@ -51,36 +51,6 @@
     \end{align*}
 
   \item
-    \begin{gather*}
-      \begin{aligned}
-        L(Y|X; W, \bb)
-        & \approx L(y|\x; W, \bb) \\
-        & = - \log \hat{p}(y|\x; W, \bb) + \frac{\lambda}{2} \norm{W}^2 \\
-        & = - \log \frac{e^{W_y \cdot \x + \bb_y}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
-            + \frac{\lambda}{2} \norm{W}^2
-      \end{aligned} \\
-      \begin{aligned}
-        \frac{\partial}{\partial W_{ci}} L(y|\x; W, \bb)
-        & = - p(y=c) \x_i + \frac{\x_i e^{W_c \cdot \x + \bb_c}}
-                                 {\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
-            + \lambda W_{ci} \\
-        & = \left(\frac{e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
-            - p(y=c)\right) \x_i + \lambda W_{ci}
-      \end{aligned} \\
-      \begin{aligned}
-        \frac{\partial}{\partial \bb_{c}} L(y|\x; W, \bb)
-        & = \frac{e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}} - p(y=c)
-      \end{aligned} \\
-    \end{gather*}
-    \therefore The update equasions are the below.
-    \begin{gather*}
-      W_{ci} \leftarrow W_{ci} - \eta
-      \left(\left(\frac{e^{W_c \cdot \x + \bb_c}}{\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}}
-            - p(y=c)\right) \x_i + \lambda W_{ci}\right) \\
-      \bb_c \leftarrow \bb_c - \eta
-      \left( \frac{e^{W_c \cdot \x + \bb_c}}
-                  {\sum_{c=1}^C e^{W_c \cdot \x + \bb_c}} - p(y=c)\right)
-    \end{gather*}
 
   \item
     Please, see a Jupyter notebook file submitted together.
