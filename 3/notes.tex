@@ -16,6 +16,11 @@
 \newcommand{\w}{\vec{w}}
 \newcommand{\bb}{\vec{b}}
 
+\newcommand{\sumhi}{\sum_{i \st y_i \ne h_{T+1}(\x_i)}}
+\newcommand{\W}[1]{W_i^(#1)}
+\newcommand{\e}[1]{\epsilon_{#1}}
+\newcommand{\ett}{\e{T+1}}
+
 \begin{document}
 
 \maketitle
@@ -38,16 +43,34 @@
     when the tree is balanced in the same way as in the problem 1.
 
   \item
+    \begin{align*}
+      \sumhi \W{T+1}
+      & = \sumhi \frac{1}{Z} \W{T} e^{- \alpha_{T+1} y_i h_{T+1}(\x_i)} \\
+      & = \frac{1}{Z} \sumhi \W{T} e^{\frac{1}{2} \log \frac{1 - \ett}{\ett}} \\
+      & = \frac{1}{Z} \sumhi \W{T} \sqrt{\frac{1 - \ett}{\ett}} \\
+      & = \frac{1}{Z} \sqrt{\frac{1 - \ett}{\ett}} \sumhi \W{T} \\
+      & = \frac{\sqrt{\ett (1 - \ett)}}{Z}
+    \end{align*}
+    \begin{align*}
+      Z
+      & = e^{- \alpha_{T+1}} (1 - \ett) e^{\alpha_T} \ett \\
+      & = \sqrt{\frac{\ett}{1 - \ett}} (1 - \ett)
+          + \sqrt{\frac{1 - \ett}{\ett}} \ett \\
+      & = 2 \sqrt{\ett (1 - \ett)}
+    \end{align*}
+    \begin{gather*}
+      \therefore \sumhi \W{T+1} = \frac{1}{2}
+    \end{gather*}
 
   \item
     \begin{align*}
       \frac{\partial}{\partial \alpha_t} L(H_t, X) & = 0 \\
       \frac{\partial}{\partial \alpha_t} \left(
-        e^{-\alpha_t} (1 - \epsilon_t) + e^{\alpha_t} \epsilon_t
+        e^{-\alpha_t} (1 - \e{t}) + e^{\alpha_t} \e{t}
       \right) & = 0 \\
-      - e^{-\alpha_t} (1 - \epsilon_t) + e^{\alpha_t} \epsilon_t & = 0 \\
-      e^{2 \alpha_t} & = \frac{1 - \epsilon_t}{\epsilon_t} \\
-      \alpha_t & = \frac{1}{2} \log \frac{1 - \epsilon_t}{\epsilon_t}
+      - e^{-\alpha_t} (1 - \e{t}) + e^{\alpha_t} \e{t} & = 0 \\
+      e^{2 \alpha_t} & = \frac{1 - \e{t}}{\e{t}} \\
+      \alpha_t & = \frac{1}{2} \log \frac{1 - \e{t}}{\e{t}}
     \end{align*}
 
   \item
