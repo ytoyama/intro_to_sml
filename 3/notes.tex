@@ -25,7 +25,7 @@
 \newcommand\loss{
   - \frac{1}{2} \norm{\w}^2 - C \sum_{i=1}^N \xi_i
   + \sum_{i=1}^N \alpha_i \left( y_i (\w^T \phi(\x_i) + w_0) - 1 + \xi_i \right)
-  + \sum_{i=1} \mu_i \xi_i}
+  + \sum_{i=1}^N \mu_i \xi_i}
 \newcommand\lastloss{\frac{1}{2} \sumij - \sum_{i=1}^N \alpha_i}
 \newcommand\sumij{\sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j \phi(\x_i) \phi(\x_j)}
 \newcommand\yphi[2]{y_{#1} y_{#2} \phi(\x_{#1}) \phi(\x_{#2})}
