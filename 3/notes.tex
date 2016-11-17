@@ -26,6 +26,8 @@
   - \frac{1}{2} \norm{\w}^2 - C \sum_{i=1}^N \xi_i
   + \sum_{i=1}^N \alpha_i \left( y_i (\w^T \phi(\x_i) + w_0) - 1 + \xi_i \right)
   + \sum_{i=1} \mu_i \xi_i}
+\newcommand\lastloss{\frac{1}{2} \sumij - \sum_{i=1}^N \alpha_i}
+\newcommand\sumij{\sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j \phi(\x_i) \phi(\x_j)}
 
 \begin{document}
 
@@ -119,6 +121,18 @@
       \frac{\partial L}{\partial w_0} & = \sum_{i=1}^N \alpha_i y_i = 0 \\
       \frac{\partial L}{\partial \xi_i} & = - C + \alpha_i + \mu_i = 0 \\
     \end{align*}
+    \begin{align*}
+      L & = - \frac{1}{2} \sumij + \sumij - \sum_{i=1}^N \alpha_i \\
+        & = \lastloss
+    \end{align*}
+    \therefore The resulting optimization problem is the below.
+    \begin{gather*}
+      \min_{\alpha} \lastloss \\
+      \begin{cases}
+        0 \le \alpha_i \le C & \text{\because $\alpha_i = C - \mu_i \wedge \mu_i \ge 0$} \\
+        \sum_{i=1}^N \alpha_i y_i = 0
+      \end{cases}
+    \end{gather*}
 
   \item
     Please, see a Jupyter notebook file submitted together.
