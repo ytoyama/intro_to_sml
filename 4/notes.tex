@@ -32,6 +32,7 @@
 
 \newcommand\Lnb{\sum_{i=1}^N (y_i - \w \cdot \phi(x_i))^2}
 \newcommand\Lnbl{- \Lnb + \lambda (\tau - \sum_{j=1}^d w_j^2)}
+\newcommand\pinb[1]{\pi_c \prod_{j=1}^d \theta_{#1 j}^{x_{ij}} (1 - \theta_{#1 j}^{1 - x_{ij}})}
 
 \begin{document}
 
@@ -71,6 +72,13 @@
         \sum_{i=1}^N \left\{ \frac{x_{ij}}{\theta_j} - \frac{1 - x_{ij}}{1 - \theta_j} \right\} & = 0 \\
         \theta_j & = \frac{1}{N} \sum_{i=1}^N x_{ij}
       \end{aligned}
+    \end{gather*}
+
+  \item
+    \begin{gather*}
+      \gamma_{ic}
+      & = \frac{\pi_c P(\x_i; \theta_c)}{\sum_{l=1}^k \pi_l P(\x_i; \theta_l)}
+      & = \frac{\pinb{c}}{\sum_{l=1}^k \pinb{l}} \\
     \end{gather*}
 \end{p}
 
