@@ -68,7 +68,7 @@
       \log P(\x | y = c; \theta) = \sum_{j = 1}^d x_j \log \theta_j + (1 - x_j) \log (1 - \theta_j) \\
       \begin{aligned}
         \frac{\partial \log P(X | \vec{y} = c; \theta)}{\partial \theta} & = 0 \\
-        \sum_{i=1}^N \frac{x_{ij}}{\theta_j} - \frac{1 - x_{ij}}{1 - \theta_j} & = 0 \\
+        \sum_{i=1}^N \left\{ \frac{x_{ij}}{\theta_j} - \frac{1 - x_{ij}}{1 - \theta_j} \right\} & = 0 \\
         \theta_j & = \frac{1}{N} \sum_{i=1}^N x_{ij}
       \end{aligned}
     \end{gather*}
