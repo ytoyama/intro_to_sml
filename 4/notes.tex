@@ -1,0 +1,90 @@
+\documentclass{introtosml}
+\nth{4}
+
+\newcommand\Ep[1]{E_{p(\vec{x}, y)} \left[ #1 \right]}
+\newcommand\fancyb{\beta_{\hat{y}, y}}
+
+\newcommand{\x}{\vec{x}}
+\newcommand{\q}{q(c_r = c' | \x)}
+\newcommand{\qc}{q(c_r = c | \x)}
+\newcommand{\pyx}[1]{p(y = #1 | \x)}
+\newcommand{\pyxh}{\pyx{h^*(\x)}}
+\newcommand{\pyxc}{\pyx{c}}
+\newcommand{\intx}[1]{\int_\vec{x} #1 d\vec{x}}
+\newcommand{\R}[1]{R(#1 | \vec{x})}
+
+\newcommand{\w}{\vec{w}}
+\newcommand{\bb}{\vec{b}}
+
+\newcommand{\sumhi}[1][T+1]{\sum_{i \st y_i \ne h_{#1}(\x_i)}}
+\newcommand{\W}[1]{W_i^{(#1)}}
+\newcommand{\e}[1]{\epsilon_{#1}}
+\newcommand{\ett}{\e{T+1}}
+
+\newcommand\ywxxi{y_i (\w^T \phi(\x_i) + w_0) - 1 + \xi_i}
+\newcommand\loss{
+  - \frac{1}{2} \norm{\w}^2 - C \sum_{i=1}^N \xi_i
+  + \sum_{i=1}^N \alpha_i \left( y_i (\w^T \phi(\x_i) + w_0) - 1 + \xi_i \right)
+  + \sum_{i=1}^N \mu_i \xi_i}
+\newcommand\lastloss{\frac{1}{2} \sumij - \sum_{i=1}^N \alpha_i}
+\newcommand\sumij{\sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j \phi(\x_i) \phi(\x_j)}
+\newcommand\yphi[2]{y_{#1} y_{#2} \phi(\x_{#1}) \phi(\x_{#2})}
+
+\newcommand\Lnb{\sum_{i=1}^N (y_i - \w \cdot \phi(x_i))^2}
+\newcommand\Lnbl{- \Lnb + \lambda (\tau - \sum_{j=1}^d w_j^2)}
+\newcommand\pinb[1]{\pi_c \prod_{j=1}^d \theta_{#1 j}^{x_{ij}} (1 - \theta_{#1 j})^{1 - x_{ij}}}
+
+\begin{document}
+
+\maketitle
+
+\begin{p}
+  \item
+    \begin{gather*}
+      \w^* = \argmin_\w \left\{ \sum_{i=1}^N (y_i - \w \cdot \phi(x_i))^2 \right\} \\
+      \st \sum_{j=1}^d w_j^2 \le \tau \\
+    \end{gather*}
+    Using Lagrange's multiplier method,
+    \begin{gather*}
+      \min_\lambda \max_\w \Lnbl \\
+      \max_\lambda \min_\w \Lnb - \lambda (\tau - \sum_{j=1}^d w_j^2) \\
+      \frac{\partial}{\partial \w} \left\{ \Lnbl \right\} = 0 \\
+      2 \sum_{i=1}^N \phi(x_i) (y_i - \w \cdot \phi(x_i)) - 2 \lambda \w = 0 \\
+      \sum_{i=1}^N \phi(x_i) (y_i - \w \cdot \phi(x_i)) - \lambda \w = 0
+    \end{gather*}
+    The equation above is the same as one of L2 regularized squared
+    loss in regression. \\
+    \therefore If a proper $\tau$ which makes $\lambda$s of both problems same
+    is found, the $w^*$s of both problems are same.
+
+  \item
+    \begin{gather*}
+      \begin{aligned}
+        \hat{y}
+        & = \argmax_c \log P(\x, y = c) \\
+        & = \argmax_c \left\{ \log P(\x | y = c) + \log P(y = c) \right\} \\
+        & = \argmax_c \log P(\x | y = c)
+      \end{aligned} \\
+      P(\x | y = c; \theta) = \prod_{j=1}^d \theta_j^{x_j} (1 - \theta_j)^{1 - x_j} \\
+      \log P(\x | y = c; \theta) = \sum_{j = 1}^d x_j \log \theta_j + (1 - x_j) \log (1 - \theta_j) \\
+      \begin{aligned}
+        \frac{\partial \log P(X | \vec{y} = c; \theta)}{\partial \theta} & = 0 \\
+        \sum_{i=1}^N \left\{ \frac{x_{ij}}{\theta_j} - \frac{1 - x_{ij}}{1 - \theta_j} \right\} & = 0 \\
+        \theta_j & = \frac{1}{N} \sum_{i=1}^N x_{ij}
+      \end{aligned}
+    \end{gather*}
+
+  \item
+    \begin{align*}
+      \gamma_{ic}
+      & = \frac{\pi_c P(\x_i; \theta_c)}{\sum_{l=1}^k \pi_l P(\x_i; \theta_l)} \\
+      & = \frac{\pinb{c}}{\sum_{l=1}^k \pinb{l}} \\
+    \end{align*}
+\end{p}
+
+\begin{thebibliography}{9}
+  \bibitem{Bishop} Christopher M. Bishop, Pattern Recognition and Machine Learning
+  \bibitem{discussion} Discussion with Tomoki Tsujimura and Bowen Shi
+\end{thebibliography}
+
+\end{document}
