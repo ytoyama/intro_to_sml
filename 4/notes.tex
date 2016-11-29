@@ -80,6 +80,13 @@
       & = \frac{\pi_c P(\x_i; \theta_c)}{\sum_{l=1}^k \pi_l P(\x_i; \theta_l)} \\
       & = \frac{\pinb{c}}{\sum_{l=1}^k \pinb{l}} \\
     \end{align*}
+
+  \item
+    \begin{align*}
+      E_{z_{ic} ~ \gamma_{ic}} \left[ \log P(X, Z; \pi, \theta) \right]
+      & = \sum_{i=1}^N \sum_{c=1}^k \gamma_{ic} (\log \pi_c + \log P(\x_i; \theta_c)) \\
+      & = \sum_{i=1}^N \sum_{c=1}^k \gamma_{ic} (\log \pi_c + \log P(\x_i; \theta_c)) \\
+    \end{align*}
 \end{p}
 
 \begin{thebibliography}{9}
