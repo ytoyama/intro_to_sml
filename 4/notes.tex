@@ -60,9 +60,9 @@
     \begin{gather*}
       \begin{aligned}
         \hat{y}
-        & = \argmax_c \log p(\x, y = c) \\
-        & = \argmax_c \left\{ \log p(\x | y = c) + \log p(y = c) \right\} \\
-        & = \argmax_c \log p(\x | y = c)
+        & = \argmax_c \log P(\x, y = c) \\
+        & = \argmax_c \left\{ \log P(\x | y = c) + \log P(y = c) \right\} \\
+        & = \argmax_c \log P(\x | y = c)
       \end{aligned} \\
       P(\x | y = c; \theta) = \prod_{j=1}^d \theta_j^{x_j} (1 - \theta_j)^{1 - x_j} \\
       \log P(\x | y = c; \theta) = \sum_{j = 1}^d x_j \log \theta_j + (1 - x_j) \log (1 - \theta_j) \\
