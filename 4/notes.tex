@@ -83,10 +83,22 @@
 
   \item
     \begin{align*}
-      E_{z_{ic} ~ \gamma_{ic}} \left[ \log P(X, Z; \pi, \theta) \right]
+      L
+      & = E_{z_{ic} ~ \gamma_{ic}} \left[ \log P(X, Z; \pi, \theta) \right]
       & = \sum_{i=1}^N \sum_{c=1}^k \gamma_{ic} (\log \pi_c + \log P(\x_i; \theta_c)) \\
-      & = \sum_{i=1}^N \sum_{c=1}^k \gamma_{ic} (\log \pi_c + \log P(\x_i; \theta_c)) \\
+      & = \sum_{i=1}^N \sum_{c=1}^k \gamma_{ic} (\log \pi_c + \sum_{i=1}^d
+          \left\{ x_{ij} \log \theta_{lj} + (1 - x_{ij}) \log (1 - \theta_{lj}) \right\}) \\
     \end{align*}
+    Using Langrange multiplier method with a constraint of $\pi_c$, $\sum_{c=1}^k \pi_c = 1$,
+    \begin{align*}
+      \frac{\partial L}{\partial \theta_{lj}} & = 0 \\
+      \sum_{i=1}^N \gamma_{ic} (\frac{x_{ij}}{\theta_{lj}} - \frac{1 - x_{ij}}{1 - \theta_{lj}}) & = 0 \\
+      \sum_{i=1}^N \gamma_{ic} (x_{ij} - \theta_{lj}) & = 0 \\
+      \theta_{lj} & = \frac{\sum_{i=1}^N \gamma_{ic} x_{ij}}{\sum_{i=1}^N \gamma_{ic}}
+    \end{align*}
+
+  \item
+    Please, see a Jupyter notebook file submitted together.
 \end{p}
 
 \begin{thebibliography}{9}
