@@ -99,6 +99,14 @@
       \sum_{i=1}^N \gamma_{ic} (x_{ij} - \theta_{lj}) & = 0 \\
       \theta_{lj} & = \frac{\sum_{i=1}^N \gamma_{ic} x_{ij}}{\sum_{i=1}^N \gamma_{ic}}
     \end{align*}
+    \begin{align*}
+      \frac{\partial L'}{\partial \pi_c} & = 0 \\
+      \sum_{i=1}^N \frac{\gamma_{ic}}{\pi_c} + \lambda & = 0 \\
+      \sum_{i=1}^N \sum_{c=1}^k \gamma_{ic} & = - \lambda \sum_{c=1}^k \pi_c \\
+      N & = - \lambda \\
+      \lambda & = - N \\
+      \therefore \pi_c = \frac{\sum_{i=1}^N \gamma_{ic}}{N}
+    \end{align*}
 
   \item
     Please, see a Jupyter notebook file submitted together.
