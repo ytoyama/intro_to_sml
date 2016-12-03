@@ -1,0 +1,54 @@
+\documentclass{introtosml}
+\nth{5}
+
+\newcommand\Ep[1]{E_{p(\vec{x}, y)} \left[ #1 \right]}
+\newcommand\fancyb{\beta_{\hat{y}, y}}
+
+\newcommand{\x}{\vec{x}}
+\newcommand{\q}{q(c_r = c' | \x)}
+\newcommand{\qc}{q(c_r = c | \x)}
+\newcommand{\pyx}[1]{p(y = #1 | \x)}
+\newcommand{\pyxh}{\pyx{h^*(\x)}}
+\newcommand{\pyxc}{\pyx{c}}
+\newcommand{\intx}[1]{\int_\vec{x} #1 d\vec{x}}
+\newcommand{\R}[1]{R(#1 | \vec{x})}
+
+\newcommand{\w}{\vec{w}}
+\newcommand{\bb}{\vec{b}}
+
+\newcommand{\sumhi}[1][T+1]{\sum_{i \st y_i \ne h_{#1}(\x_i)}}
+\newcommand{\W}[1]{W_i^{(#1)}}
+\newcommand{\e}[1]{\epsilon_{#1}}
+\newcommand{\ett}{\e{T+1}}
+
+\newcommand\ywxxi{y_i (\w^T \phi(\x_i) + w_0) - 1 + \xi_i}
+\newcommand\loss{
+  - \frac{1}{2} \norm{\w}^2 - C \sum_{i=1}^N \xi_i
+  + \sum_{i=1}^N \alpha_i \left( y_i (\w^T \phi(\x_i) + w_0) - 1 + \xi_i \right)
+  + \sum_{i=1}^N \mu_i \xi_i}
+\newcommand\lastloss{\frac{1}{2} \sumij - \sum_{i=1}^N \alpha_i}
+\newcommand\sumij{\sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j \phi(\x_i) \phi(\x_j)}
+\newcommand\yphi[2]{y_{#1} y_{#2} \phi(\x_{#1}) \phi(\x_{#2})}
+
+\newcommand\Lnb{\sum_{i=1}^N (y_i - \w \cdot \phi(x_i))^2}
+\newcommand\Lnbl{- \Lnb + \lambda (\tau - \sum_{j=1}^d w_j^2)}
+\newcommand\pinb[1]{\pi_{#1} \prod_{j=1}^d \theta_{#1 j}^{x_{ij}} (1 - \theta_{#1 j})^{1 - x_{ij}}}
+
+\begin{document}
+
+\maketitle
+
+\begin{p}
+  \item
+    Hello, world!
+
+  \item
+    Please, see a Jupyter notebook file submitted together.
+\end{p}
+
+\begin{thebibliography}{9}
+  \bibitem{Bishop} Christopher M. Bishop, Pattern Recognition and Machine Learning
+  \bibitem{discussion} Discussion with Tomoki Tsujimura and Bowen Shi
+\end{thebibliography}
+
+\end{document}
