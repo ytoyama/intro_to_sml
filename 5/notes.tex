@@ -35,9 +35,9 @@
 \newcommand\pinb[1]{\pi_{#1} \prod_{j=1}^d \theta_{#1 j}^{x_{ij}} (1 - \theta_{#1 j})^{1 - x_{ij}}}
 
 
-\newcommand\gauss[1]{\prod_{j=1}^d \frac{1}{\sqrt{2 \pi \sigma_j^2}} \exp(- \frac{(x_j - \mu_{#1,j})^2}{2 \sigma_j^2})}
+\newcommand\gauss[1]{\prod_{j=1}^d \frac{1}{\sqrt{2 \pi \sigma_j^2}} \exp{- \frac{(x_j - \mu_{#1,j})^2}{2 \sigma_j^2}}}
 \newcommand\cgauss[1]{p(y=#1)\gauss{#1}}
-\newcommand\cgaus[1]{p(y=#1) \prod_{j=1}^d \exp(- (x_j - \mu_{#1,j})^2)}
+\newcommand\cgaus[1]{p(y=#1) \prod_{j=1}^d \exp{- (x_j - \mu_{#1,j})^2}}
 \newcommand\pbias{\frac{p(y=0)}{p(y=1)}}
 
 \begin{document}
@@ -50,15 +50,15 @@
       \begin{aligned}
         p(y=1|\x)
         & = \frac{p(\x|y=1)p(y=1)}{p(\x)} \\
-        & = \frac{p(y=1)}{p(\x)} N(\mu_1, \sum_1) \\
+        & = \frac{p(y=1)}{p(\x)} N(\mu_1, \Sigma_1) \\
         & = \frac{p(y=1)}{p(\x)} \prod_{j=1}^d N(\mu_{1,j}, \sigma_j) \\
         & = \frac{p(y=1)}{p(\x)} \gauss{1} \\
         & = \frac{\cgauss{1}}{\cgauss{0} + \cgauss{1}} \\
         & = \frac{1}{1 + \pbias \frac{\cgauss{0}}{\cgauss{1}}} \\
-        & = \frac{1}{1 + \pbias \prod_{j=1}^d \exp((x_j - \mu_{1,j})^2 - (x_j - \mu_{0,j})^2)} \\
+        & = \frac{1}{1 + \pbias \prod_{j=1}^d \exp{(x_j - \mu_{1,j})^2 - (x_j - \mu_{0,j})^2}} \\
         & = \frac{1}{1 +
-            \exp(\log \pbias + \sum_{j=1}^d (\mu_{1,j}^2 - \mu_{0,j}^2)
-                + 2 \sum_{j=1}^d (\mu_{0,j} - \mu{1,j}) x_j)}
+            \exp{\log \pbias + \sum_{j=1}^d (\mu_{1,j}^2 - \mu_{0,j}^2)
+            + 2 \sum_{j=1}^d (\mu_{0,j} - \mu{1,j}) x_j}}
       \end{aligned} \\
       \therefore \begin{cases}
         w_0 = \sum_{j=1}^d (\mu_{1,j}^2 - \mu_{0,j}^2) \\
